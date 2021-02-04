@@ -40,5 +40,5 @@ for n in range(10):
 
     for n in range(10):
         random_movie = choice(movies_in_db)
-        rating = randint(1, 6)
+        rating = randint(1, 5)
         new_rating = crud.create_rating(user, random_movie, rating)
