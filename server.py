@@ -11,7 +11,11 @@ app.secret_key = "GFRWYU83752ounfatgr25DCFgw8795trhegsfjdvn"
 app.jinja_env.undefined = StrictUndefined
 
 
-# Replace this with routes and view functions!
+@app.route('/')
+def show_homepage():
+    """Displays homepage"""
+
+    return render_template('homepage.html')
 
 
 
