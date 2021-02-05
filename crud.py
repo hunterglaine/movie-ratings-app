@@ -31,6 +31,14 @@ def show_all_movies():
     return db.session.query(Movie).all()
 
 
+def get_movie_by_id(movie_id):
+    """Returns a movie by id"""
+
+    movie = Movie.query.get(movie_id)
+
+    return movie
+
+
 def create_rating(user, movie, score):
     """create and return a new rating"""
 
