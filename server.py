@@ -55,6 +55,21 @@ def show_user_info(user_id):
     return render_template('user_details.html', user=user)
 
 
+@app.route('/users', methods=["POST"])
+def create_new_user():
+    """Creates a new user."""
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    if crud.get_user_by_email(email): 
+        flash("An account with this email exists. Try again sucka")
+    else:
+        crud.create_user(email, password)
+        flash("You did it, please log in")
+    
+    return redirect('/')
+
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)
