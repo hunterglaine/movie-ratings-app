@@ -50,6 +50,20 @@ def create_rating(user, movie, score):
     return rating
 
 
+def show_all_users():
+    """Returns a list of all users."""
+
+    return User.query.all()
+
+
+def get_user_by_id(user_id):
+    """Returns a user by id."""
+
+    user = User.query.filter(User.user_id == user_id).one()
+
+    return user
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
