@@ -70,6 +70,27 @@ def create_new_user():
     return redirect('/')
 
 
+@app.route('/login', methods=["POST"])
+def log_in_user():
+    """Logs user in."""
+
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    user = crud.get_user_by_email(email)
+
+    if user:
+        if password == user.password:
+            session['user'] = user.user_id
+            flash("You logged in! Good job.")
+        else:
+            flash("Passwords don't match. Try again.")
+    else:
+        flash("User does not exist. Please create an account.")
+
+    return redirect ('/')
+
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)
